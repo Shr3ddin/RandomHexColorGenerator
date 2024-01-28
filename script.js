@@ -1,27 +1,20 @@
 const currentColor = document.querySelector('.generator-title span');
 const changeColorBtn = document.querySelector('.change-bg-color-btn');
 
-const getRandomHexValue = () => {
-	const randomIndexPos = Math.floor(Math.random() * signs.length);
-
-	const randomHexValue = signs[randomIndexPos];
-
-	return randomHexValue;
-};
-
-const getRandomHexColor = hexLength => {
-	let hexString = '';
-
-	for (let i = 0; i < hexLength; i++) {
-		hexString += getRandomHexValue();
+const getRandomHexColor = () => {
+	let hexColor = '#';
+	for (let i = 0; i < 6; i++) {
+		hexColor += Math.floor(Math.random() * 16).toString(16);
 	}
-console.log(hexString);
-	return hexString;
+
+	return hexColor;
 };
 
 changeColorBtn.addEventListener('click', () => {
-    const randomHexString = `#${getRandomHexColor(6)}`
+    const randomColor = getRandomHexColor()
 
-    document.body.style.backgroundColor = randomHexString
-    currentColor.textContent = randomHexString
-})
+    document.body.style.backgroundColor = randomColor;
+    currentColor.textContent = randomColor
+});
+
+getRandomHexColor();
